@@ -75,10 +75,9 @@ The orchestrator manages parallelism, state, retries, and resume.
 ```
 cv.md                    →  Evaluation context
 article-digest.md        →  Proof points for matching
-config/profile.yml       →  Candidate identity
+config/profile.yml       →  Candidate identity + GitResume repo config
 portals.yml              →  Scanner configuration
 templates/states.yml     →  Canonical status values
-config/profile.yml       →  GitResume repo config
 ```
 
 ## File Naming Conventions
