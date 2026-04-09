@@ -11,7 +11,7 @@ Claude workflow.
 
 - A Codex client that can work with project `AGENTS.md`
 - Node.js 18+
-- Playwright Chromium installed for PDF generation and reliable job verification
+- Playwright Chromium installed for offer verification
 - Go 1.21+ if you want the TUI dashboard
 
 ## Install
@@ -25,7 +25,7 @@ npx playwright install chromium
 
 - `Evaluate this job URL with Career-Ops and run the full pipeline.`
 - `Scan my configured portals for new roles that match my profile.`
-- `Generate the tailored ATS PDF for this role using Career-Ops.`
+- `Generate the tailored resume.yaml for this role and push to GitResume.`
 
 ## Routing Map
 
@@ -35,7 +35,7 @@ npx playwright install chromium
 | Single evaluation only | `modes/_shared.md` + `modes/oferta.md` |
 | Multiple offers | `modes/_shared.md` + `modes/ofertas.md` |
 | Portal scan | `modes/_shared.md` + `modes/scan.md` |
-| PDF generation | `modes/_shared.md` + `modes/pdf.md` |
+| Resume generation (GitResume) | `modes/_shared.md` + `modes/pdf.md` |
 | Live application help | `modes/_shared.md` + `modes/apply.md` |
 | Pipeline inbox processing | `modes/_shared.md` + `modes/pipeline.md` |
 | Tracker status | `modes/tracker.md` |

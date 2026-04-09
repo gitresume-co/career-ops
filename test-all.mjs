@@ -102,7 +102,7 @@ const systemFiles = [
   'CLAUDE.md', 'VERSION', 'DATA_CONTRACT.md',
   'modes/_shared.md', 'modes/_profile.template.md',
   'modes/oferta.md', 'modes/pdf.md', 'modes/scan.md',
-  'templates/states.yml', 'templates/cv-template.html',
+  'templates/states.yml', 'templates/resume.schema.json',
   '.claude/skills/career-ops/SKILL.md',
 ];
 

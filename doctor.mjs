@@ -110,7 +110,7 @@ function checkFonts() {
     return {
       pass: false,
       label: 'fonts/ directory not found',
-      fix: 'The fonts/ directory is required for PDF generation',
+      fix: 'The fonts/ directory is required for local rendering (optional with GitResume)',
     };
   }
   try {
@@ -119,7 +119,7 @@ function checkFonts() {
       return {
         pass: false,
         label: 'fonts/ directory is empty',
-        fix: 'The fonts/ directory must contain font files for PDF generation',
+        fix: 'The fonts/ directory must contain font files for local rendering (optional with GitResume)',
       };
     }
   } catch {

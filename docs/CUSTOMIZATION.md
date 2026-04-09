@@ -33,14 +33,9 @@ Copy from `templates/portals.example.yml` and customize:
 3. **search_queries**: WebSearch queries for job boards (Ashby, Greenhouse, Lever)
 4. **tracked_companies**: Companies to check directly
 
-## CV Template (templates/cv-template.html)
+## Resume Output (GitResume)
 
-The HTML template uses these design tokens:
-- **Fonts**: Space Grotesk (headings) + DM Sans (body) -- self-hosted in `fonts/`
-- **Colors**: Cyan primary (`hsl(187,74%,32%)`) + Purple accent (`hsl(270,70%,45%)`)
-- **Layout**: Single-column, ATS-optimized
-
-To customize fonts/colors, edit the CSS in the template. Update font files in `fonts/` if switching fonts.
+This fork outputs `resume.yaml` in GitResume format instead of HTML/PDF. The resume schema is at `templates/resume.schema.json`. See `modes/pdf.md` for the full schema reference and examples.
 
 ## Negotiation Scripts (modes/_shared.md)
 

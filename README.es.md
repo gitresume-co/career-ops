@@ -190,7 +190,7 @@ career-ops/
 │   ├── batch.md                 # Procesamiento batch
 │   └── ...
 ├── templates/
-│   ├── cv-template.html         # Template de CV ATS-optimizado
+│   ├── resume.schema.json       # GitResume YAML schema
 │   ├── portals.example.yml      # Config del scanner
 │   └── states.yml               # Estados canonicos
 ├── batch/
@@ -214,7 +214,7 @@ career-ops/
 ![Bubble Tea](https://img.shields.io/badge/Bubble_Tea-FF75B5?style=flat&logo=go&logoColor=white)
 
 - **Agente**: Claude Code con skills y modos personalizados
-- **PDF**: Playwright/Puppeteer + template HTML
+- **PDF**: GitResume (resume.yaml → auto-build)
 - **Scanner**: Playwright + Greenhouse API + WebSearch
 - **Dashboard**: Go + Bubble Tea + Lipgloss (tema Catppuccin Mocha)
 - **Datos**: Tablas Markdown + config YAML + ficheros TSV batch
