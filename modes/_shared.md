@@ -93,11 +93,10 @@ After detecting archetype, read `modes/_profile.md` for the user's specific fram
 | WebSearch | Comp research, trends, company culture, LinkedIn contacts, fallback for JDs |
 | WebFetch | Fallback for extracting JDs from static pages |
 | Playwright | Verify offers (browser_navigate + browser_snapshot). **NEVER 2+ agents with Playwright in parallel.** |
-| Read | cv.md, _profile.md, article-digest.md, cv-template.html |
-| Write | Temporary HTML for PDF, applications.md, reports .md |
+| Read | cv.md, _profile.md, article-digest.md, config/profile.yml |
+| Write | resume.yaml (GitResume format), applications.md, reports .md |
 | Edit | Update tracker |
-| Canva MCP | Optional visual CV generation. Duplicate base design, edit text, export PDF. Requires `canva_resume_design_id` in profile.yml. |
-| Bash | `node generate-pdf.mjs` |
+| Bash | Git operations (clone, branch, commit, push to GitResume repo) |
 
 ### Time-to-offer priority
 - Working demo + metrics > perfection
@@ -120,7 +119,7 @@ These rules apply to ALL generated text that ends up in candidate-facing documen
 - "demonstrated ability to" / "best practices" (name the practice)
 
 ### Unicode normalization for ATS
-`generate-pdf.mjs` automatically normalizes em-dashes, smart quotes, and zero-width characters to ASCII equivalents for maximum ATS compatibility. But avoid generating them in the first place.
+Normalize em-dashes, smart quotes, and zero-width characters to ASCII equivalents in generated resume.yaml for maximum ATS compatibility. Avoid generating them in the first place.
 
 ### Vary sentence structure
 - Don't start every bullet with the same verb

@@ -15,6 +15,7 @@ Determine the mode from `{{mode}}`:
 | Input | Mode |
 |-------|------|
 | (empty / no args) | `discovery` -- Show command menu |
+| `gitresume` | `gitresume` |
 | JD text or URL (no sub-command) | **`auto-pipeline`** |
 | `oferta` | `oferta` |
 | `ofertas` | `ofertas` |
@@ -44,13 +45,14 @@ Show this menu:
 career-ops -- Command Center
 
 Available commands:
+  /career-ops gitresume → Set up GitResume integration (version-controlled resumes + auto-built PDFs)
   /career-ops {JD}      → AUTO-PIPELINE: evaluate + report + PDF + tracker (paste text or URL)
   /career-ops pipeline  → Process pending URLs from inbox (data/pipeline.md)
   /career-ops oferta    → Evaluation only A-F (no auto PDF)
   /career-ops ofertas   → Compare and rank multiple offers
   /career-ops contacto  → LinkedIn power move: find contacts + draft message
   /career-ops deep      → Deep research prompt about company
-  /career-ops pdf       → PDF only, ATS-optimized CV
+  /career-ops pdf       → Generate tailored resume.yaml (→ GitResume auto-builds PDF)
   /career-ops training  → Evaluate course/cert against North Star
   /career-ops project   → Evaluate portfolio project idea
   /career-ops tracker   → Application status overview
@@ -77,7 +79,7 @@ Applies to: `auto-pipeline`, `oferta`, `ofertas`, `pdf`, `contacto`, `apply`, `p
 ### Standalone modes (only their mode file):
 Read `modes/{mode}.md`
 
-Applies to: `tracker`, `deep`, `training`, `project`, `patterns`
+Applies to: `gitresume`, `tracker`, `deep`, `training`, `project`, `patterns`
 
 ### Modes delegated to subagent:
 For `scan`, `apply` (with Playwright), and `pipeline` (3+ URLs): launch as Agent with the content of `_shared.md` + `modes/{mode}.md` injected into the subagent prompt.

@@ -14,7 +14,7 @@
 git clone https://github.com/santifer/career-ops.git
 cd career-ops
 npm install
-npx playwright install chromium   # Required for PDF generation
+npx playwright install chromium   # Required for offer verification (not PDF generation)
 ```
 
 ### 2. Configure your profile

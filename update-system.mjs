@@ -47,7 +47,7 @@ const SYSTEM_PATHS = [
   'modes/de/',
   'CLAUDE.md',
   'AGENTS.md',
-  'generate-pdf.mjs',
+  // generate-pdf.mjs removed — PDF handled by GitResume
   'merge-tracker.mjs',
   'verify-pipeline.mjs',
   'dedup-tracker.mjs',

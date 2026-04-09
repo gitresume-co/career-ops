@@ -3,7 +3,7 @@
 Eres un worker de evaluación de ofertas de empleo for the candidate (read name from config/profile.yml). Recibes una oferta (URL + JD text) y produces:
 
 1. Evaluación completa A-F (report .md)
-2. PDF personalizado ATS-optimizado
+2. resume.yaml personalizado ATS-optimizado (GitResume format)
 3. Línea de tracker para merge posterior
 
 **IMPORTANTE**: Este prompt es self-contained. Tienes TODO lo necesario aquí. No dependes de ningún otro skill ni sistema.
@@ -18,8 +18,8 @@ Eres un worker de evaluación de ofertas de empleo for the candidate (read name 
 | llms.txt | `llms.txt (if exists)` | SIEMPRE |
 | article-digest.md | `article-digest.md (project root)` | SIEMPRE (proof points) |
 | i18n.ts | `i18n.ts (if exists, optional)` | Solo entrevistas/deep |
-| cv-template.html | `templates/cv-template.html` | Para PDF |
-| generate-pdf.mjs | `generate-pdf.mjs` | Para PDF |
+| resume.schema.json | `templates/resume.schema.json` | Para resume.yaml |
+| config/profile.yml | `config/profile.yml` | GitResume repo config |
 
 **REGLA: NUNCA escribir en cv.md ni i18n.ts.** Son read-only.
 **REGLA: NUNCA hardcodear métricas.** Leerlas de cv.md + article-digest.md en el momento.
@@ -208,16 +208,12 @@ Donde `{company-slug}` es el nombre de empresa en lowercase, sin espacios, con g
 8. Reordena bullets de experiencia por relevancia al JD
 9. Construye competency grid (6-8 keyword phrases)
 10. Inyecta keywords en logros existentes (**NUNCA inventa**)
-11. Genera HTML completo desde template (lee `templates/cv-template.html`)
-12. Escribe HTML a `/tmp/cv-candidate-{company-slug}.html`
-13. Ejecuta:
-```bash
-node generate-pdf.mjs \
-  /tmp/cv-candidate-{company-slug}.html \
-  output/cv-candidate-{company-slug}-{{DATE}}.pdf \
-  --format={letter|a4}
-```
-14. Reporta: ruta PDF, nº páginas, % cobertura keywords
+11. Genera `resume.yaml` en formato GitResume (ver `modes/pdf.md` para el schema)
+12. Si `config/profile.yml` tiene `gitresume.repo`: push a branch `apply/{company-slug}` en el repo GitResume
+13. Si no tiene `gitresume.repo`: guarda en `output/resume-{company-slug}-{{DATE}}.yaml`
+14. Reporta: ruta del archivo o branch name + % cobertura keywords
+
+**Nota:** En batch mode (`claude -p`), git push puede no funcionar si no hay auth configurada. En ese caso, guardar localmente y marcar como pendiente.
 
 **Reglas ATS:**
 - Single-column (sin sidebars)
@@ -242,33 +238,7 @@ node generate-pdf.mjs \
 - NUNCA añadir skills the candidate doesn't have
 - Ejemplo: JD dice "RAG pipelines" y CV dice "LLM workflows with retrieval" → "RAG pipeline design and LLM orchestration workflows"
 
-**Template placeholders (en cv-template.html):**
-
-| Placeholder | Contenido |
-|-------------|-----------|
-| `{{LANG}}` | `en` o `es` |
-| `{{PAGE_WIDTH}}` | `8.5in` (letter) o `210mm` (A4) |
-| `{{NAME}}` | (from profile.yml) |
-| `{{EMAIL}}` | (from profile.yml) |
-| `{{LINKEDIN_URL}}` | (from profile.yml) |
-| `{{LINKEDIN_DISPLAY}}` | (from profile.yml) |
-| `{{PORTFOLIO_URL}}` | (from profile.yml) |
-| `{{PORTFOLIO_DISPLAY}}` | (from profile.yml) |
-| `{{LOCATION}}` | (from profile.yml) |
-| `{{SECTION_SUMMARY}}` | Professional Summary / Resumen Profesional |
-| `{{SUMMARY_TEXT}}` | Summary personalizado con keywords |
-| `{{SECTION_COMPETENCIES}}` | Core Competencies / Competencias Core |
-| `{{COMPETENCIES}}` | `<span class="competency-tag">keyword</span>` × 6-8 |
-| `{{SECTION_EXPERIENCE}}` | Work Experience / Experiencia Laboral |
-| `{{EXPERIENCE}}` | HTML de cada trabajo con bullets reordenados |
-| `{{SECTION_PROJECTS}}` | Projects / Proyectos |
-| `{{PROJECTS}}` | HTML de top 3-4 proyectos |
-| `{{SECTION_EDUCATION}}` | Education / Formación |
-| `{{EDUCATION}}` | HTML de educación |
-| `{{SECTION_CERTIFICATIONS}}` | Certifications / Certificaciones |
-| `{{CERTIFICATIONS}}` | HTML de certificaciones |
-| `{{SECTION_SKILLS}}` | Skills / Competencias |
-| `{{SKILLS}}` | HTML de skills |
+**Output format:** Generate `resume.yaml` in GitResume format (see `templates/resume.schema.json` for full schema and `modes/pdf.md` for examples).
 
 ### Paso 5 — Tracker Line
 
