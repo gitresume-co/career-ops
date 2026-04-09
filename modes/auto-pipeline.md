@@ -22,8 +22,8 @@ Ejecutar exactamente igual que el modo `oferta` (leer `modes/oferta.md` para tod
 ## Paso 2 — Guardar Report .md
 Guardar la evaluación completa en `reports/{###}-{company-slug}-{YYYY-MM-DD}.md` (ver formato en `modes/oferta.md`).
 
-## Paso 3 — Generar PDF
-Ejecutar el pipeline completo de `pdf` (leer `modes/pdf.md`).
+## Paso 3 — Generate tailored resume.yaml and push to GitResume
+Execute the full `pdf` pipeline (read `modes/pdf.md`). This generates a `resume.yaml` tailored to the JD and pushes it to a new branch on the user's GitResume repo. GitResume auto-builds the PDF.
 
 ## Paso 4 — Draft Application Answers (solo si score >= 4.5)
 

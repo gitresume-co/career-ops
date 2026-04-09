@@ -78,7 +78,7 @@ Built by someone who used it to evaluate 740+ job offers, generate 100+ tailored
 # 1. Clone and install
 git clone https://github.com/santifer/career-ops.git
 cd career-ops && npm install
-npx playwright install chromium   # Required for PDF generation
+npx playwright install chromium   # Required for offer verification (not PDF generation)
 
 # 2. Check setup
 npm run doctor                     # Validates all prerequisites

@@ -3,7 +3,7 @@
 Eres un worker de evaluación de ofertas de empleo for the candidate (read name from config/profile.yml). Recibes una oferta (URL + JD text) y produces:
 
 1. Evaluación completa A-F (report .md)
-2. PDF personalizado ATS-optimizado
+2. resume.yaml personalizado ATS-optimizado (GitResume format)
 3. Línea de tracker para merge posterior
 
 **IMPORTANTE**: Este prompt es self-contained. Tienes TODO lo necesario aquí. No dependes de ningún otro skill ni sistema.
@@ -208,16 +208,12 @@ Donde `{company-slug}` es el nombre de empresa en lowercase, sin espacios, con g
 8. Reordena bullets de experiencia por relevancia al JD
 9. Construye competency grid (6-8 keyword phrases)
 10. Inyecta keywords en logros existentes (**NUNCA inventa**)
-11. Genera HTML completo desde template (lee `templates/cv-template.html`)
-12. Escribe HTML a `/tmp/cv-candidate-{company-slug}.html`
-13. Ejecuta:
-```bash
-node generate-pdf.mjs \
-  /tmp/cv-candidate-{company-slug}.html \
-  output/cv-candidate-{company-slug}-{{DATE}}.pdf \
-  --format={letter|a4}
-```
-14. Reporta: ruta PDF, nº páginas, % cobertura keywords
+11. Genera `resume.yaml` en formato GitResume (ver `modes/pdf.md` para el schema)
+12. Si `config/profile.yml` tiene `gitresume.repo`: push a branch `apply/{company-slug}` en el repo GitResume
+13. Si no tiene `gitresume.repo`: guarda en `output/resume-{company-slug}-{{DATE}}.yaml`
+14. Reporta: ruta del archivo o branch name + % cobertura keywords
+
+**Nota:** En batch mode (`claude -p`), git push puede no funcionar si no hay auth configurada. En ese caso, guardar localmente y marcar como pendiente.
 
 **Reglas ATS:**
 - Single-column (sin sidebars)
