@@ -195,7 +195,7 @@ This system is designed to be customized by YOU (AI Agent). When the user asks y
 - "Translate the modes to English" → edit all files in `modes/`
 - "Add these companies to my portals" → edit `portals.yml`
 - "Update my profile" → edit `config/profile.yml`
-- "Change the CV template design" → edit `templates/cv-template.html`
+- "Set up GitResume" → run `/career-ops gitresume`
 - "Adjust the scoring weights" → edit `modes/_profile.md` for user-specific weighting, or edit `modes/_shared.md` and `batch/batch-prompt.md` only when changing the shared system defaults for everyone
 
 ### Language Modes
