@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gitresume.co/schema/resume.schema.json",
+  "title": "GitResume YAML Schema",
+  "description": "Schema for resume.yaml used by GitResume",
+  "type": "object",
+  "properties": {
+    "personalInfo": { "$ref": "#/$defs/personalInfo" },
+    "sections": {
+      "type": "array",
+      "description": "Ordered array of resume sections. Array order = render order.",
+      "items": { "$ref": "#/$defs/section" }
+    }
+  },
+  "required": ["personalInfo", "sections"],
+  "additionalProperties": false,
+  "$defs": {
+    "dateString": {
+      "type": "string",
+      "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$",
+      "description": "Date in YYYY, YYYY-MM, or YYYY-MM-DD format"
+    },
+    "endDate": {
+      "oneOf": [
+        { "$ref": "#/$defs/dateString" },
+        { "type": "null" }
+      ],
+      "description": "End date. Omit or set to null for 'present'."
+    },
+    "personalInfo": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Full name" },
+        "title": { "type": "string", "description": "Job title or headline" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "location": { "type": "string", "description": "City, Country" },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": { "type": "string", "description": "e.g. GitHub, LinkedIn, Portfolio" },
+              "url": { "type": "string", "format": "uri" }
+            },
+            "required": ["label", "url"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["name"],
+      "additionalProperties": false
+    },
+    "section": {
+      "oneOf": [
+        { "$ref": "#/$defs/summarySection" },
+        { "$ref": "#/$defs/experienceSection" },
+        { "$ref": "#/$defs/educationSection" },
+        { "$ref": "#/$defs/skillsSection" },
+        { "$ref": "#/$defs/genericSection" },
+        { "$ref": "#/$defs/listSection" }
+      ]
+    },
+    "summarySection": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "summary" },
+        "title": { "type": "string", "description": "Override section heading (default: Summary)" },
+        "tagline": { "type": "string", "description": "Short headline, e.g. 'Full-Stack Developer & Open Source Contributor'" },
+        "content": { "type": "string", "description": "Professional summary (supports Markdown)" }
+      },
+      "required": ["type", "content"],
+      "additionalProperties": false
+    },
+    "experienceSection": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "experience" },
+        "title": { "type": "string", "description": "Override section heading (default: Experience)" },
+        "items": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/experienceItem" }
+        }
+      },
+      "required": ["type", "items"],
+      "additionalProperties": false
+    },
+    "experienceItem": {
+      "type": "object",
+      "properties": {
+        "position": { "type": "string", "description": "Job title or role" },
+        "organization": { "type": "string", "description": "Company, community, or project name (e.g. Google, Apache Kafka)" },
+        "location": { "type": "string" },
+        "startDate": { "$ref": "#/$defs/dateString" },
+        "endDate": { "$ref": "#/$defs/endDate" },
+        "description": { "type": "string", "description": "Supports Markdown" }
+      },
+      "required": ["position", "startDate"],
+      "additionalProperties": false
+    },
+    "educationSection": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "education" },
+        "title": { "type": "string", "description": "Override section heading (default: Education)" },
+        "items": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/educationItem" }
+        }
+      },
+      "required": ["type", "items"],
+      "additionalProperties": false
+    },
+    "educationItem": {
+      "type": "object",
+      "properties": {
+        "institution": { "type": "string" },
+        "degree": { "type": "string" },
+        "location": { "type": "string" },
+        "startDate": { "$ref": "#/$defs/dateString" },
+        "endDate": { "$ref": "#/$defs/endDate" },
+        "description": { "type": "string" }
+      },
+      "required": ["institution", "degree"],
+      "additionalProperties": false
+    },
+    "skillsSection": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "skills" },
+        "title": { "type": "string", "description": "Override section heading (default: Skills)" },
+        "items": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/skillGroup" }
+        }
+      },
+      "required": ["type", "items"],
+      "additionalProperties": false
+    },
+    "skillGroup": {
+      "type": "object",
+      "properties": {
+        "category": { "type": "string", "description": "e.g. Languages, Frameworks, Infrastructure" },
+        "items": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["category", "items"],
+      "additionalProperties": false
+    },
+    "genericSection": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "generic" },
+        "title": { "type": "string", "description": "Section heading (e.g. Certifications, Projects, Publications)" },
+        "items": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/genericItem" }
+        }
+      },
+      "required": ["type", "title", "items"],
+      "additionalProperties": false
+    },
+    "genericItem": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "startDate": { "$ref": "#/$defs/dateString" },
+        "endDate": { "$ref": "#/$defs/endDate" },
+        "description": { "type": "string", "description": "Supports Markdown" }
+      },
+      "required": ["title"],
+      "additionalProperties": false
+    },
+    "listSection": {
+      "type": "object",
+      "properties": {
+        "type": { "const": "list" },
+        "title": { "type": "string", "description": "Section heading (e.g. Languages, Publications)" },
+        "items": {
+          "type": "array",
+          "items": { "type": "string", "description": "Each item supports Markdown" }
+        }
+      },
+      "required": ["type", "title", "items"],
+      "additionalProperties": false
+    }
+  }
+}

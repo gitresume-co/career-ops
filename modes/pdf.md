@@ -26,50 +26,69 @@ This fork integrates with [GitResume](https://gitresume.co). Instead of generati
 
 ## Step 7 — Generate resume.yaml
 
-Map content from `cv.md` + `config/profile.yml` into the GitResume YAML schema:
+Map content from `cv.md` + `config/profile.yml` into the GitResume YAML schema.
 
 ### GitResume YAML Schema
+
+**Read the full JSON Schema at `templates/resume.schema.json` before generating.** This is a local copy of https://gitresume.co/schema/resume.schema.json (source of truth).
+
+Key points about the schema:
+- `personalInfo` — name (required), title, email, phone, location, links
+- `sections` — ordered array, render order = array order. Each section has a `type`:
+  - `summary` — `content` field (Markdown)
+  - `experience` — items with position, organization, startDate, endDate, description (Markdown)
+  - `education` — items with institution, degree, startDate, endDate, description (Markdown)
+  - `skills` — items with category + items array
+  - `generic` — for projects, certifications, etc. Custom `title` for section heading
+  - `list` — simple bullet list
+
+**Markdown in description fields**: All `description` and `content` fields support full Markdown — **bold**, *italic*, [links](url), `inline code`, and bullet lists. Use this to make the resume rich and ATS-friendly:
+```yaml
+description: |
+  - Led migration from **monolith to microservices**, reducing deploy time by 70%
+  - Built internal CLI tool in `Go` for [automated deployments](https://example.com)
+  - Mentored 3 junior engineers through structured onboarding program
+```
+
+### Example resume.yaml
 
 ```yaml
 # yaml-language-server: $schema=https://gitresume.co/schema/resume.schema.json
 personalInfo:
-  name: "Full Name"                    # from profile.yml candidate.full_name
-  title: "Job Title"                   # adapt to target role from JD
-  email: "email@example.com"           # from profile.yml candidate.email
-  phone: "+1-555-0123"                 # from profile.yml candidate.phone (optional)
-  location: "City, Country"            # from profile.yml location.city + country
+  name: "Jane Smith"
+  title: "Senior Software Engineer"       # adapt to target role from JD
+  email: "jane@example.com"
+  location: "San Francisco, CA"
   links:
     - label: "GitHub"
-      url: "https://github.com/username"
+      url: "https://github.com/janesmith"
     - label: "LinkedIn"
-      url: "https://linkedin.com/in/username"
+      url: "https://linkedin.com/in/janesmith"
 
-sections:                              # array order = render order on the resume
-
+sections:
   - type: summary
-    content: |                         # Markdown supported
-      3-4 lines, keyword-dense professional summary.
-      Inject top JD keywords + exit narrative bridge.
+    content: |
+      Senior engineer with 6 years building **distributed systems** and
+      **cloud-native architectures**. Led cross-functional teams delivering
+      high-throughput APIs serving 10M+ daily requests.
 
   - type: experience
     items:
       - position: "Senior Software Engineer"
-        organization: "Company Name"
-        startDate: "2022-03"           # YYYY-MM format
-        endDate: null                  # null = present
-        description: |                 # Markdown supported
-          - Bullet points reordered by relevance to JD
-          - Keywords injected naturally into existing achievements
-          - NEVER invent experience — only reformulate with JD vocabulary
-
-  - type: generic                      # Use for Projects, Certifications, etc.
-    title: "Projects"                  # Section heading
-    items:
-      - title: "Project Name"
-        url: "https://example.com"     # optional
-        startDate: "2024-01"           # optional
+        organization: "Acme Corp"
+        startDate: "2022-03"
         description: |
-          - Top 3-4 most relevant projects for this JD
+          - Led migration from **monolith to microservices**, reducing deploy time by 70%
+          - Designed and implemented **event-driven architecture** processing 50K events/sec
+          - Mentored 3 junior engineers through structured onboarding program
+
+  - type: generic
+    title: "Projects"
+    items:
+      - title: "Open Source CLI Tool"
+        url: "https://github.com/janesmith/tool"
+        description: |
+          - Built deployment automation tool in `Go` — **2K+ GitHub stars**
 
   - type: skills
     items:
@@ -80,10 +99,10 @@ sections:                              # array order = render order on the resum
 
   - type: education
     items:
-      - institution: "University Name"
+      - institution: "Stanford University"
         degree: "Computer Science"
-        startDate: "2016-09"
-        endDate: "2020-06"
+        startDate: "2014-09"
+        endDate: "2018-06"
 ```
 
 ### Content rules (same as original career-ops)

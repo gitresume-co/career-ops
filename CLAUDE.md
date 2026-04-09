@@ -145,8 +145,8 @@ If `data/applications.md` doesn't exist, create it:
 ```markdown
 # Applications Tracker
 
-| # | Date | Company | Role | Score | Status | PDF | Report | Notes |
-|---|------|---------|------|-------|--------|-----|--------|-------|
+| # | Date | Company | Role | Score | Status | PDF | Report | Branch | Notes |
+|---|------|---------|------|-------|--------|-----|--------|--------|-------|
 ```
 
 #### Step 6: Get to know the user (important for quality)
@@ -281,10 +281,10 @@ Default modes are in `modes/` (English). Additional language-specific modes are 
 
 ### TSV Format for Tracker Additions
 
-Write one TSV file per evaluation to `batch/tracker-additions/{num}-{company-slug}.tsv`. Single line, 9 tab-separated columns:
+Write one TSV file per evaluation to `batch/tracker-additions/{num}-{company-slug}.tsv`. Single line, 10 tab-separated columns:
 
 ```
-{num}\t{date}\t{company}\t{role}\t{status}\t{score}/5\t{pdf_emoji}\t[{num}](reports/{num}-{slug}-{date}.md)\t{note}
+{num}\t{date}\t{company}\t{role}\t{status}\t{score}/5\t{pdf_emoji}\t[{num}](reports/{num}-{slug}-{date}.md)\t{branch}\t{note}
 ```
 
 **Column order (IMPORTANT -- status BEFORE score):**
@@ -296,7 +296,8 @@ Write one TSV file per evaluation to `batch/tracker-additions/{num}-{company-slu
 6. `score` -- format `X.X/5` (e.g., `4.2/5`)
 7. `pdf` -- `✅` or `❌`
 8. `report` -- markdown link `[num](reports/...)`
-9. `notes` -- one-line summary
+9. `branch` -- GitResume branch (e.g., `apply/acme-corp`) or `-` if local only
+10. `notes` -- one-line summary
 
 **Note:** In applications.md, score comes BEFORE status. The merge script handles this column swap automatically.
 
