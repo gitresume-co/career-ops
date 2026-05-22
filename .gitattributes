@@ -1,0 +1,6 @@
+# Fork-owned files: always keep our version when merging upstream.
+# These are completely rewritten or rebranded for GitResume integration.
+modes/pdf.md           merge=ours
+README.md              merge=ours
+docs/hero-banner.jpg   merge=ours
+README.es.md           merge=ours
