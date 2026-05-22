@@ -4,6 +4,17 @@
 
 > **Fork maintainers / AI agents merging upstream:** read `docs/SYNC-UPSTREAM.md` first. The sync workflow relies on `.gitattributes` (auto-resolves fork-owned files) and `git rerere` (replays previously-resolved conflicts). Run `scripts/setup-dev.sh` once per clone to enable rerere. The doc lists the fork-specific invariants that every merge must preserve.
 
+## GitResume Integration Rules (CRITICAL)
+
+These rules apply whenever GitResume is mentioned, regardless of how the user phrased the request (`/career-ops gitresume`, "how do I set up GitResume", "connect my resume repo", etc.):
+
+1. **Always read `modes/gitresume.md` before answering any GitResume setup question.** Never improvise the flow from general SaaS-onboarding knowledge. Quote the exact URLs and steps the mode file specifies.
+2. **UX wording: use "Grant Repository Access" — never "Install GitHub App" or "Install".** GitResume's official UI uses "Grant Repository Access" and "Connect" wording; "Install" leaks a GitHub implementation detail to users.
+3. **The two canonical URLs:**
+   - Create resume repo from template: `https://github.com/gitresume-co/resume-template/generate`
+   - Grant repository access: `https://gitresume.co/start`
+4. **Do not invent UI elements.** "New Resume" buttons, "Connect Repo" buttons, dashboard tabs — none of these are specified in `modes/gitresume.md`. If a step isn't in the mode file, don't make it up.
+
 ## Origin
 
 This system was built and used by [santifer](https://santifer.io) to evaluate 740+ job offers, generate 100+ tailored CVs, and land a Head of Applied AI role. The archetypes, scoring logic, negotiation scripts, and proof point structure all reflect his specific career search in AI/automation roles.
