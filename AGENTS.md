@@ -2,6 +2,8 @@
 
 > **This is a [GitResume](https://gitresume.co) fork.** Instead of generating local PDFs via Playwright, the `pdf` mode outputs a `resume.yaml` and pushes it to your GitResume repo. GitResume auto-builds the PDF with version control, hosting, and a shareable link. See `modes/pdf.md` for details.
 
+> **Fork maintainers / AI agents merging upstream:** read `docs/SYNC-UPSTREAM.md` first. The sync workflow relies on `.gitattributes` (auto-resolves fork-owned files) and `git rerere` (replays previously-resolved conflicts). Run `scripts/setup-dev.sh` once per clone to enable rerere. The doc lists the fork-specific invariants that every merge must preserve.
+
 ## Origin
 
 This system was built and used by [santifer](https://santifer.io) to evaluate 740+ job offers, generate 100+ tailored CVs, and land a Head of Applied AI role. The archetypes, scoring logic, negotiation scripts, and proof point structure all reflect his specific career search in AI/automation roles.
