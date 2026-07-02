@@ -94,7 +94,7 @@ After detecting archetype, read `modes/_profile.md` for the user's specific fram
 | WebFetch | Fallback for extracting JDs from static pages |
 | Playwright | Verify offers (browser_navigate + browser_snapshot). **NEVER 2+ agents with Playwright in parallel.** |
 | Read | cv.md, _profile.md, article-digest.md, config/profile.yml |
-| Write | resume.yaml (GitResume format), applications.md, reports .md |
+| Write | gitresume.yaml (GitResume format), applications.md, reports .md |
 | Edit | Update tracker |
 | Bash | Git operations (clone, branch, commit, push to GitResume repo) |
 
@@ -119,7 +119,7 @@ These rules apply to ALL generated text that ends up in candidate-facing documen
 - "demonstrated ability to" / "best practices" (name the practice)
 
 ### Unicode normalization for ATS
-Normalize em-dashes, smart quotes, and zero-width characters to ASCII equivalents in generated resume.yaml for maximum ATS compatibility. Avoid generating them in the first place.
+Normalize em-dashes, smart quotes, and zero-width characters to ASCII equivalents in generated resume YAML for maximum ATS compatibility. Avoid generating them in the first place.
 
 ### Vary sentence structure
 - Don't start every bullet with the same verb

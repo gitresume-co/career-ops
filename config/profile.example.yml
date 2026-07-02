@@ -67,9 +67,9 @@ location:
   # onsite_availability: "1 week/month in any city"
 
 # GitResume integration (https://gitresume.co)
-# When configured, /career-ops pdf outputs a resume.yaml and pushes to your GitResume repo
+# When configured, /career-ops pdf outputs a resume YAML and pushes to your GitResume repo
 # instead of generating a local PDF via Playwright.
 gitresume:
   repo: "username/my-resume"        # GitHub repo connected to GitResume
-  resume_path: "resume.yaml"        # Path to resume file in repo (default: resume.yaml)
+  resume_path: "gitresume.yaml"     # Must match the file in your repo (older repos use resume.yaml)
   base_branch: "main"               # Branch to base tailored branches from (default: main)

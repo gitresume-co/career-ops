@@ -3,7 +3,7 @@
 Eres un worker de evaluación de ofertas de empleo for the candidate (read name from config/profile.yml). Recibes una oferta (URL + JD text) y produces:
 
 1. Evaluación completa A-F (report .md)
-2. resume.yaml personalizado ATS-optimizado (GitResume format)
+2. gitresume.yaml personalizado ATS-optimizado (GitResume format)
 3. Línea de tracker para merge posterior
 
 **IMPORTANTE**: Este prompt es self-contained. Tienes TODO lo necesario aquí. No dependes de ningún otro skill ni sistema.
@@ -18,7 +18,7 @@ Eres un worker de evaluación de ofertas de empleo for the candidate (read name 
 | llms.txt | `llms.txt (if exists)` | SIEMPRE |
 | article-digest.md | `article-digest.md (project root)` | SIEMPRE (proof points) |
 | i18n.ts | `i18n.ts (if exists, optional)` | Solo entrevistas/deep |
-| resume.schema.json | `templates/resume.schema.json` | Para resume.yaml |
+| resume.schema.json | `templates/resume.schema.json` | Para el resume YAML |
 | config/profile.yml | `config/profile.yml` | GitResume repo config |
 
 **REGLA: NUNCA escribir en cv.md ni i18n.ts.** Son read-only.
@@ -208,7 +208,7 @@ Donde `{company-slug}` es el nombre de empresa en lowercase, sin espacios, con g
 8. Reordena bullets de experiencia por relevancia al JD
 9. Construye competency grid (6-8 keyword phrases)
 10. Inyecta keywords en logros existentes (**NUNCA inventa**)
-11. Genera `resume.yaml` en formato GitResume (ver `modes/pdf.md` para el schema)
+11. Genera el resume YAML en formato GitResume (ver `modes/pdf.md` para el schema; nombre de archivo: resolver como en `modes/pdf.md` Flow A: config `gitresume.resume_path` verificado contra el repo clonado → archivo de resume ya existente en el repo → `gitresume.yaml` si el repo está vacío. NUNCA crear un archivo paralelo si ya existe uno)
 12. Si `config/profile.yml` tiene `gitresume.repo`: push a branch `apply/{company-slug}` en el repo GitResume
 13. Si no tiene `gitresume.repo`: guarda en `output/resume-{company-slug}-{{DATE}}.yaml`
 14. Reporta: ruta del archivo o branch name + % cobertura keywords
@@ -238,7 +238,7 @@ Donde `{company-slug}` es el nombre de empresa en lowercase, sin espacios, con g
 - NUNCA añadir skills the candidate doesn't have
 - Ejemplo: JD dice "RAG pipelines" y CV dice "LLM workflows with retrieval" → "RAG pipeline design and LLM orchestration workflows"
 
-**Output format:** Generate `resume.yaml` in GitResume format (see `templates/resume.schema.json` for full schema and `modes/pdf.md` for examples).
+**Output format:** Generate the resume YAML in GitResume format (see `templates/resume.schema.json` for full schema and `modes/pdf.md` for examples).
 
 ### Paso 5 — Tracker Line
 

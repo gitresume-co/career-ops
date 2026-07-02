@@ -196,6 +196,6 @@ In deutschen Stellenanzeigen und Vertragsverhandlungen tauchen Begriffe auf, die
 | WebFetch | Fallback, um Stellenanzeigen aus statischen Seiten zu extrahieren |
 | Playwright | Prüfen, ob Stellenanzeigen noch aktiv sind (browser_navigate + browser_snapshot), Stellenanzeigen aus SPAs extrahieren. **KRITISCH: NIEMALS 2+ Agenten parallel mit Playwright starten — sie teilen sich eine Browser-Instanz** |
 | Read | cv.md, article-digest.md, config/profile.yml |
-| Write | resume.yaml (GitResume-Format), applications.md, Reports .md |
+| Write | gitresume.yaml (GitResume-Format), applications.md, Reports .md |
 | Edit | Tracker aktualisieren |
 | Bash | Git-Operationen (clone, branch, commit, push zum GitResume-Repo) |

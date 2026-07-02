@@ -35,7 +35,7 @@ Copy from `templates/portals.example.yml` and customize:
 
 ## Resume Output (GitResume)
 
-This fork outputs `resume.yaml` in GitResume format instead of HTML/PDF. The resume schema is at `templates/resume.schema.json`. See `modes/pdf.md` for the full schema reference and examples.
+This fork outputs `gitresume.yaml` in GitResume format instead of HTML/PDF. The resume schema is at `templates/resume.schema.json`. See `modes/pdf.md` for the full schema reference and examples.
 
 ## Negotiation Scripts (modes/_shared.md)
 

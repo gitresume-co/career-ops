@@ -20,13 +20,13 @@
             │           │ (URL inbox) │          │ (claude -p)
             │           └─────────────┘          └────┬─────┘
             │                                          │
-     ┌──────▼──────────────────────────────────────────▼──────┐
+     ┌──────▼──────────────────────────────────────────▼───────┐
      │                    Output Pipeline                      │
-     │  ┌──────────┐  ┌────────────┐  ┌───────────────────┐  │
-     │  │ Report.md│  │resume.yaml │  │ Tracker TSV       │  │
-     │  │ (A-F eval)│  │ → GitResume │  │ (merge-tracker)  │  │
-     │  └──────────┘  └────────────┘  └───────────────────┘  │
-     └────────────────────────────────────────────────────────┘
+     │  ┌──────────┐  ┌──────────────┐  ┌────────────────┐     │
+     │  │ Report.md│  │gitresume.yaml│  │ Tracker TSV    │     │
+     │  │(A-F eval)│  │ → GitResume  │  │ (merge-tracker)│     │
+     │  └──────────┘  └──────────────┘  └────────────────┘     │
+     └─────────────────────────────────────────────────────────┘
                                │
                     ┌──────────▼──────────┐
                     │  data/applications.md │
@@ -48,7 +48,7 @@
    - F: Interview prep (STAR stories)
 5. **Score**: Weighted average across 10 dimensions (1-5)
 6. **Report**: Save as `reports/{num}-{company}-{date}.md`
-7. **Resume**: Generate tailored `resume.yaml` → push to GitResume repo branch
+7. **Resume**: Generate tailored `gitresume.yaml` → push to GitResume repo branch
 8. **Track**: Write TSV to `batch/tracker-additions/`, auto-merged
 
 ## Batch Processing
