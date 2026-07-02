@@ -208,7 +208,7 @@ Donde `{company-slug}` es el nombre de empresa en lowercase, sin espacios, con g
 8. Reordena bullets de experiencia por relevancia al JD
 9. Construye competency grid (6-8 keyword phrases)
 10. Inyecta keywords en logros existentes (**NUNCA inventa**)
-11. Genera el resume YAML en formato GitResume (ver `modes/pdf.md` para el schema; nombre de archivo: `gitresume.resume_path` en config/profile.yml, default `gitresume.yaml`)
+11. Genera el resume YAML en formato GitResume (ver `modes/pdf.md` para el schema; nombre de archivo: resolver como en `modes/pdf.md` Flow A: config `gitresume.resume_path` verificado contra el repo clonado → archivo de resume ya existente en el repo → `gitresume.yaml` si el repo está vacío. NUNCA crear un archivo paralelo si ya existe uno)
 12. Si `config/profile.yml` tiene `gitresume.repo`: push a branch `apply/{company-slug}` en el repo GitResume
 13. Si no tiene `gitresume.repo`: guarda en `output/resume-{company-slug}-{{DATE}}.yaml`
 14. Reporta: ruta del archivo o branch name + % cobertura keywords
