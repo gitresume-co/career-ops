@@ -25,7 +25,7 @@ npx playwright install chromium
 
 - `Evaluate this job URL with Career-Ops and run the full pipeline.`
 - `Scan my configured portals for new roles that match my profile.`
-- `Generate the tailored resume.yaml for this role and push to GitResume.`
+- `Generate the tailored gitresume.yaml for this role and push to GitResume.`
 
 ## Routing Map
 

@@ -1,6 +1,6 @@
-# Mode: pdf — Generate GitResume resume.yaml
+# Mode: pdf — Generate GitResume resume YAML
 
-This fork integrates with [GitResume](https://gitresume.co). Instead of generating a local PDF via Playwright, it outputs a `resume.yaml` tailored to the JD and pushes it to a branch on your GitResume repo. GitResume auto-builds the PDF and hosts it.
+This fork integrates with [GitResume](https://gitresume.co). Instead of generating a local PDF via Playwright, it outputs a resume YAML (`gitresume.yaml`) tailored to the JD and pushes it to a branch on your GitResume repo. GitResume auto-builds the PDF and hosts it.
 
 ## Prerequisites
 
@@ -8,7 +8,7 @@ This fork integrates with [GitResume](https://gitresume.co). Instead of generati
   ```yaml
   gitresume:
     repo: "username/my-resume"
-    resume_path: "resume.yaml"       # default
+    resume_path: "gitresume.yaml"    # must match the file in the repo (older repos use resume.yaml)
     base_branch: "main"              # default
   ```
 - The GitResume repo must be accessible via `git clone` (SSH or HTTPS with credentials)
@@ -21,10 +21,10 @@ This fork integrates with [GitResume](https://gitresume.co). Instead of generati
 4. Detect JD language (EN default)
 5. Detect role archetype → adapt framing (see `_shared.md`)
 6. Read `config/profile.yml` for candidate info and GitResume repo config
-7. Generate a tailored `resume.yaml` following the schema below
+7. Generate a tailored resume YAML following the schema below
 8. Push to GitResume repo on a new branch
 
-## Step 7 — Generate resume.yaml
+## Step 7 — Generate the resume YAML
 
 Map content from `cv.md` + `config/profile.yml` into the GitResume YAML schema.
 
@@ -50,7 +50,7 @@ description: |
   - Mentored 3 junior engineers through structured onboarding program
 ```
 
-### Example resume.yaml
+### Example gitresume.yaml
 
 ```yaml
 # yaml-language-server: $schema=https://gitresume.co/schema/resume.schema.json
@@ -127,11 +127,10 @@ Check if `config/profile.yml` has a `gitresume.repo` field.
 
 ### Flow A: GitResume configured
 
-Push the resume.yaml to a new branch on the user's GitResume repo:
+Push the resume YAML to a new branch on the user's GitResume repo:
 
 ```bash
 REPO="<gitresume.repo>"
-RESUME_PATH="<gitresume.resume_path, default: resume.yaml>"
 BASE_BRANCH="<gitresume.base_branch, default: main>"
 TEMP_DIR="/tmp/gitresume-${REPO##*/}"
 
@@ -141,11 +140,22 @@ else
   git clone "https://github.com/$REPO.git" "$TEMP_DIR"
   cd "$TEMP_DIR"
 fi
+```
+
+**Resolve `RESUME_PATH` — CRITICAL.** GitResume builds only trigger when the pushed file matches the project's configured resume path, so writing the wrong filename silently produces no PDF. Resolve in this order:
+
+1. `gitresume.resume_path` from `config/profile.yml`, if set
+2. Otherwise, the resume file that already exists in the cloned repo (`gitresume.yaml`, `resume.yaml`, or a custom path) — edit THAT file, never create a parallel one
+3. Otherwise (empty repo, no config): `gitresume.yaml`, and remind the user to check that **Project Settings → Resume Path** on gitresume.co matches
+
+Once resolved, save it back to `config/profile.yml` (`gitresume.resume_path`) so future runs skip detection.
+
+```bash
 
 BRANCH="apply/<company-slug>"
 git checkout -b "$BRANCH" "origin/$BASE_BRANCH"
 
-# (AI writes the generated resume.yaml at $RESUME_PATH)
+# (AI writes the generated resume YAML at $RESUME_PATH)
 
 git add "$RESUME_PATH"
 git commit -m "tailor resume for <Company> <Role>"
@@ -168,7 +178,7 @@ Report:
 
 ### Flow B: No GitResume configured
 
-Save the resume.yaml locally:
+Save the resume YAML locally:
 
 ```
 output/resume-<company-slug>-<YYYY-MM-DD>.yaml

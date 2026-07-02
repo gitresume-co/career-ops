@@ -1,6 +1,6 @@
 # Career-Ops -- AI Job Search Pipeline (GitResume Edition)
 
-> **This is a [GitResume](https://gitresume.co) fork.** Instead of generating local PDFs via Playwright, the `pdf` mode outputs a `resume.yaml` and pushes it to your GitResume repo. GitResume auto-builds the PDF with version control, hosting, and a shareable link. See `modes/pdf.md` for details.
+> **This is a [GitResume](https://gitresume.co) fork.** Instead of generating local PDFs via Playwright, the `pdf` mode outputs a resume YAML (`gitresume.yaml`) and pushes it to your GitResume repo. GitResume auto-builds the PDF with version control, hosting, and a shareable link. See `modes/pdf.md` for details.
 
 ## Origin
 
@@ -104,11 +104,11 @@ If `cv.md` is missing, ask:
 > 1. Paste your CV here and I'll convert it to markdown
 > 2. Paste your LinkedIn URL and I'll extract the key info
 > 3. Tell me about your experience and I'll draft a CV for you
-> 4. Paste a GitResume `resume.yaml` — I'll use it directly
+> 4. Paste your GitResume resume YAML (`gitresume.yaml`) — I'll use it directly
 >
 > Which do you prefer?"
 
-If the user provides a GitResume `resume.yaml`, convert it to `cv.md` markdown format (the evaluation modes read `cv.md`, not YAML). Also note the repo info for Step 3 (GitResume setup).
+If the user provides a GitResume resume YAML, convert it to `cv.md` markdown format (the evaluation modes read `cv.md`, not YAML). Also note the repo info for Step 3 (GitResume setup).
 
 Create `cv.md` from whatever they provide. Make it clean markdown with standard sections (Summary, Experience, Projects, Education, Skills).
 
@@ -132,7 +132,7 @@ Fill in `config/profile.yml` with their answers. For archetypes and targeting na
 >
 > Let's set it up now — run `/career-ops gitresume`."
 
-Execute the `gitresume` mode (see `modes/gitresume.md`). If the user insists on skipping, respect it — the `pdf` mode will save resume.yaml locally and remind them to set up GitResume after the first generation.
+Execute the `gitresume` mode (see `modes/gitresume.md`). If the user insists on skipping, respect it — the `pdf` mode will save the resume YAML locally and remind them to set up GitResume after the first generation.
 
 #### Step 4: Portals (recommended)
 If `portals.yml` is missing:
@@ -270,7 +270,7 @@ Default modes are in `modes/` (English). Additional language-specific modes are 
 ## Stack and Conventions
 
 - Node.js (mjs modules), Playwright (offer verification), YAML (config), Markdown (data), Git (GitResume integration)
-- **This fork does NOT use `generate-pdf.mjs` or Canva MCP.** PDF generation is handled by [GitResume](https://gitresume.co) — the `pdf` mode outputs a `resume.yaml` and pushes to the user's GitResume repo
+- **This fork does NOT use `generate-pdf.mjs` or Canva MCP.** PDF generation is handled by [GitResume](https://gitresume.co) — the `pdf` mode outputs a resume YAML and pushes to the user's GitResume repo
 - Scripts in `.mjs`, configuration in YAML
 - Output in `output/` (gitignored), Reports in `reports/`
 - JDs in `jds/` (referenced as `local:jds/{file}` in pipeline.md)

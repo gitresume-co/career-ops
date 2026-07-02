@@ -23,10 +23,10 @@
 
 This is a [GitResume](https://gitresume.co) fork of [santifer/career-ops](https://github.com/santifer/career-ops) — an open-source AI job search system built on Claude Code.
 
-**What changed:** Instead of generating local PDFs via Playwright, the `pdf` mode outputs a `resume.yaml` in GitResume format and pushes it to your GitHub repo. GitResume auto-builds a professional PDF with version control and a shareable link.
+**What changed:** Instead of generating local PDFs via Playwright, the `pdf` mode outputs a `gitresume.yaml` in GitResume format and pushes it to your GitHub repo. GitResume auto-builds a professional PDF with version control and a shareable link.
 
 ```
-Analyze JD › resume.yaml › git push › Auto-build PDF
+Analyze JD › gitresume.yaml › git push › Auto-build PDF
 ```
 
 **What stayed the same:** Everything else — the A-F evaluation system, portal scanner, batch processing, interview prep, and application tracker.
@@ -66,9 +66,9 @@ Paste a job URL or use commands:
 
 ```
 /career-ops gitresume  → Set up GitResume integration
-/career-ops {paste JD} → Full pipeline: evaluate + resume.yaml + push + tracker
+/career-ops {paste JD} → Full pipeline: evaluate + gitresume.yaml + push + tracker
 /career-ops scan       → Scan portals for new offers
-/career-ops pdf        → Generate tailored resume.yaml (→ GitResume auto-builds PDF)
+/career-ops pdf        → Generate tailored gitresume.yaml (→ GitResume auto-builds PDF)
 /career-ops batch      → Batch evaluate multiple offers
 /career-ops tracker    → View application status
 /career-ops apply      → Fill application forms with AI
@@ -107,7 +107,7 @@ You paste a job URL
 | Feature | Description |
 |---------|-------------|
 | **GitResume Integration** | Tailored resumes pushed as branches, auto-built PDFs, version control |
-| **Auto-Pipeline** | Paste a URL, get evaluation + resume.yaml + push + tracker entry |
+| **Auto-Pipeline** | Paste a URL, get evaluation + gitresume.yaml + push + tracker entry |
 | **A-F Evaluation** | 10 weighted dimensions across 6 blocks |
 | **Interview Story Bank** | Accumulates STAR+R stories across evaluations |
 | **Portal Scanner** | 45+ companies pre-configured |
