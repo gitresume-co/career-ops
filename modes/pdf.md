@@ -144,13 +144,14 @@ fi
 
 **Resolve `RESUME_PATH` — CRITICAL.** GitResume builds only trigger when the pushed file matches the project's configured resume path, so writing the wrong filename silently produces no PDF. Resolve in this order:
 
-1. `gitresume.resume_path` from `config/profile.yml`, if set — but **verify the file exists in the cloned repo**. If it's missing while a different resume file exists, the config is stale: use the existing file instead, update `config/profile.yml`, and tell the user. (If the repo has no resume file at all, the configured value stands — this is a first push.)
+1. `gitresume.resume_path` from `config/profile.yml`, if set — but **verify the file exists in the cloned repo**. If it's missing while a different resume file exists, the config is stale: use the existing file instead, update `config/profile.yml`, and tell the user. (If the repo has no resume file at all, the configured value stands — this is a first push; remind the user to check that **Project Settings → Resume Path** on gitresume.co matches.)
 2. No config: use the resume file that already exists in the cloned repo (`gitresume.yaml`, `resume.yaml`, or a custom path) — edit THAT file, never create a parallel one
 3. No config and empty repo: `gitresume.yaml`, and remind the user to check that **Project Settings → Resume Path** on gitresume.co matches
 
 Once resolved, save it back to `config/profile.yml` (`gitresume.resume_path`). The step-1 verification is just a file-existence check on the clone — keep doing it every run.
 
 ```bash
+RESUME_PATH="<resolved path from above>"
 
 BRANCH="apply/<company-slug>"
 git checkout -b "$BRANCH" "origin/$BASE_BRANCH"
