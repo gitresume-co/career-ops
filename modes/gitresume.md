@@ -36,7 +36,7 @@ gitresume:
   base_branch: "main"
 ```
 
-If the repo has no resume file yet, use `gitresume.yaml` and remind the user to check that **Project Settings → Resume Path** on gitresume.co matches.
+If the repo has no resume file yet, use `gitresume.yaml` and remind the user to check that **Resume Path** in the project's **Settings** tab on gitresume.co matches.
 
 **Option B**: Walk the user through setup:
 
