@@ -28,7 +28,7 @@ Ask if they want to update any of these values.
 > **B)** I want to set one up now (2 minutes)
 > **C)** Cancel"
 
-**Option A**: Ask for repo name. Then detect the resume filename — clone the repo (or list its files via `gh api repos/<repo>/contents`) and find the existing resume file (`gitresume.yaml`, `resume.yaml`, or a custom path). Use what actually exists; the repo is the source of truth because GitResume only builds when the pushed file matches the project's configured path. Add the `gitresume` section to `config/profile.yml`:
+**Option A**: Ask for repo name. Then detect the resume filename — clone the repo (or list its files via `gh api repos/<repo>/contents`) and find the existing resume file (`gitresume.yaml`, `resume.yaml`, their `.yml` variants, or a custom path). Use what actually exists; the repo is the source of truth because GitResume only builds when the pushed file matches the project's configured path. If more than one candidate exists, do NOT guess — ask the user which one **Resume Path** in the project's **Settings** tab on gitresume.co points to. Add the `gitresume` section to `config/profile.yml`:
 ```yaml
 gitresume:
   repo: "<their-repo>"
@@ -70,3 +70,8 @@ If the repo has no resume file yet, use `gitresume.yaml` and remind the user to 
    > Let me know when you're done!"
 
    Wait for the user to confirm before proceeding.
+
+5. After the project is created, ask the user to verify that **Resume Path** in
+   the project's **Settings** tab matches the pushed filename (`gitresume.yaml`).
+   If the project was created with a different default, either rename the file
+   or update the setting — a mismatch means pushes silently never build.

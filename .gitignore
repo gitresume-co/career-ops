@@ -38,7 +38,7 @@ career-dashboard
 package-lock.json
 
 # User's actual CV and backups (personal data — never commit)
-cv.md
+/cv.md
 data/*.bak
 
 # IDE
